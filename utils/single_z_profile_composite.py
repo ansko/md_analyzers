@@ -20,17 +20,29 @@ def single_z_profile(dfc, **kwargs):
         replicate = False
 
     try:
-        clay_ids = kwargs['clay_ids']
+        clay_idcs = kwargs['clay_idcs']
     except KeyError:
-        clay_ids = set()
+        clay_idcs = set()
 
-    # Find clay ranges TODO
+    # Find clay ranges
     clay_zlo = dfc.zhi
     clay_zhi = dfc.zlo
     for atom in dfc.atoms:
-        #if atom['atom_id'] in clay_ids:
+        if atom['atom_id'] in clay_idcs:
             clay_zlo = min(clay_zlo, atom['z'])
             clay_zhi = max(clay_zhi, atom['z'])
+
+    # If clay crosses the box in z direction, clay ranges are incorrect
+    clay_thickness_margined = 12
+    if clay_zhi - clay_zlo > clay_thickness_margined:
+        clay_zlo = dfc.zhi
+        clay_zhi = dfc.zlo
+        for atom in dfc.atoms:
+            if atom['atom_id'] in clay_idcs:
+                if abs(atom['z'] - clay_zlo) < clay_thickness_margined:
+                    clay_zlo = min(clay_zlo, atom['z'])
+                if abs(atom['z'] - clay_zhi) < clay_thickness_margined:
+                    clay_zhi = max(clay_zhi, atom['z'])
 
     lx = dfc.xhi - dfc.xlo
     ly = dfc.yhi - dfc.ylo
@@ -41,7 +53,7 @@ def single_z_profile(dfc, **kwargs):
     result = Counter()
 
     for atom in dfc.atoms:
-        if atom['atom_id'] in clay_ids:
+        if atom['atom_id'] in clay_idcs:
             continue
 
         # mass_value would be in g/cm3 while masses[...] are in a.m.u.
