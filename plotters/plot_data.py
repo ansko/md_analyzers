@@ -19,13 +19,23 @@ def plot_data(xs, **kwargs):
         plt.ylim(kwargs['y_limits'])
     except KeyError:
         pass
+    try:
+        legends = kwargs['legends']
+    except KeyError:
+        legends = []
+    try:
+        loc = kwargs['legend_location']
+    except KeyError:
+        loc = 'upper left'
 
     plotted_lines = []
-    legends = []
 
+    linestyles = ['-', '--', ':', '-.']
+    linecolors = ['k', 'r', 'g',  'b']
     if 'yss' in kwargs.keys():
         for y_idx, ys in enumerate(kwargs['yss']):
-            new_line, = plt.plot(xs, ys, color='k')
+            new_line, = plt.plot(xs, ys,
+                color=linecolors.pop(), linestyle=linestyles.pop())
             plotted_lines.append(new_line)
             if not legends_set:
                 legends.append('row_{0}'.format(y_idx))
@@ -34,7 +44,7 @@ def plot_data(xs, **kwargs):
         plotted_lines = [new_line]
 
     if legends:
-        matplotlib.pyplot.legend(plotted_lines, legends, loc="upper left")
+        matplotlib.pyplot.legend(plotted_lines, legends, loc=loc)
 
     try:
         fig.savefig(kwargs['out_fname'])

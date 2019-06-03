@@ -47,7 +47,7 @@ if __name__ == '__main__':
         except NameError:
             kwargs['multip'] = 1.0
         plot_kwargs = {
-            'out_fname': 'dp_mmt.png',
+            'out_fname': 'dp_mmt.pdf',
             'x_limits': [-1, 17.5]
         }
     elif system_name == 'L':
@@ -89,8 +89,8 @@ if __name__ == '__main__':
         except NameError:
             kwargs['multip'] = 1.0
         plot_kwargs = {
-            'out_fname': 'dp_comp_L.png',
-            'x_limits': [0, 28],
+            'out_fname': 'dp_comp_L.pdf',
+            'x_limits': [0, 27],
             'y_limits': [0, 2.5]
         }
     elif system_name == 'S':
@@ -132,7 +132,7 @@ if __name__ == '__main__':
         except NameError:
             kwargs['multip'] = 1.0
         plot_kwargs = {
-            'out_fname': 'dp_comp_S.png',
+            'out_fname': 'dp_comp_S.pdf',
             'x_limits': [0, 18],
             'y_limits': [0, 2.5]
         }
@@ -175,7 +175,7 @@ if __name__ == '__main__':
         except NameError:
             kwargs['multip'] = 1.0
         plot_kwargs = {
-            'out_fname': 'dp_comp_mix.png',
+            'out_fname': 'dp_comp_mix.pdf',
             'x_limits': [0, 18],
             'y_limits': [0, 2.5]
         }
@@ -219,9 +219,9 @@ if __name__ == '__main__':
         except NameError:
             kwargs['multip'] = 1.0
         plot_kwargs = {
-            'out_fname': 'dp_comp_seg.png',
-            #'x_limits': [0, 18],
-            #'y_limits': [0, 2.5]
+            'out_fname': 'dp_comp_seg.pdf',
+            'x_limits': [0, 16.5],
+            'y_limits': [0, 2.5]
         }
     elif system_name == 'pa6x20':
         # Both work, but composite provides start at x=0 at the graph
@@ -250,7 +250,7 @@ if __name__ == '__main__':
         except NameError:
             kwargs['multip'] = 1.0
         plot_kwargs = {
-            'out_fname': 'dp_comp_pa6x20w.png',
+            'out_fname': 'dp_comp_pa6x20w.pdf',
             'x_limits': [0, 45],
             'y_limits': [0, 1.5]
         }
