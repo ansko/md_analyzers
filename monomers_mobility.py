@@ -16,11 +16,13 @@ if __name__ == '__main__':
     elif system_name == 'L':
         from utils.monomers_cms import monomers_cms
         from plotters.plot_data import plot_data
-        data_dir = ('/media/anton/Seagate Expansion Drive/Backups/'
-                    'Cluster calculations for article/BiggerSystems/Comp/'
-                    '10chains/2.2 - More relaxation 500 (wiggle)/'
-                    '1785842 - relaxation')
-        fnames = ['{0}/co.{1}.data'.format(data_dir, idx * 50000)
+        #data_dir = ('/media/anton/Seagate Expansion Drive/Backups/'
+        #            'Cluster calculations for article/BiggerSystems/Comp/'
+        #            '10chains/2.2 - More relaxation 500 (wiggle)/'
+        #            '1785842 - relaxation')
+        data_dir = ('/media/anton/Seagate Expansion Drive/md_new_data/comp_L/'
+                    '300K/3514713/datafiles')
+        fnames = ['{0}/comp_L_d_53.{1}.data'.format(data_dir, idx * 50000)
             for idx in range(1, 51)]
         def monomer_idx(atom_id):
             # 0 -- 1800
